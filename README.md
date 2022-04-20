@@ -8,17 +8,19 @@ API-YaTube
 
 Создайте и активируйте виртуальное окружение
 
-python3 -m venv venv
+    python3 -m venv venv
 
-source venv/Scripts/activate
+    source venv/Scripts/activate
+    
 Установите зависимости
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
+    
 Выполните миграции
 
-python manage.py makemigrations
+    python manage.py makemigrations
 
-python manage.py migrate
+    python manage.py migrate
 
 Пример:
 
