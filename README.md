@@ -1,6 +1,6 @@
 API-YaTube
 
-Проект создан для изучения Django REST Framework.
+API для социальной сети YaTube
 
 Установка:
 
