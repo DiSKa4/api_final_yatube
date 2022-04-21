@@ -7,7 +7,8 @@ from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly
 )
 
-from posts.models import Comment, Follow, Group, Post
+from posts.models import Comment, Group, Post
+from .mixins import CreateListViewSet
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (
     CommentSerializer,
@@ -51,15 +52,14 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-class FollowViewSet(viewsets.ModelViewSet):
-    queryset = Follow.objects.all()
+class FollowViewSet(CreateListViewSet):
     serializer_class = FollowSeriallizer
     permission_classes = [IsAuthenticated]
     filter_backends = [filters.SearchFilter]
     search_fields = ('following__username',)
 
     def get_queryset(self):
-        return self.request.user.follower
+        return self.request.user.follower.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
